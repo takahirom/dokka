@@ -171,7 +171,7 @@ open class HtmlRenderer(
             content.style
         )
 
-    private fun FlowContent.buildPlatformDependent(
+    open fun FlowContent.buildPlatformDependent(
         nodes: Map<DisplaySourceSet, Collection<ContentNode>>,
         pageContext: ContentPage,
         extra: PropertyContainer<ContentNode> = PropertyContainer.empty(),
