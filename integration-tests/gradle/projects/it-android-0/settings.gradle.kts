@@ -3,3 +3,4 @@
 apply(from = "../template.settings.gradle.kts")
 rootProject.name = "it-android-0"
 
+include(":app")

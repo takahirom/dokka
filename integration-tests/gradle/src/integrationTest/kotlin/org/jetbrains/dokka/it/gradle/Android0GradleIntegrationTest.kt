@@ -37,15 +37,15 @@ class Android0GradleIntegrationTest(override val versions: BuildVersions) : Abst
             .filterNot { it.name.startsWith("gradlew") }
             .forEach { topLevelFile -> topLevelFile.copyTo(File(projectDir, topLevelFile.name)) }
 
-        File(templateProjectDir, "src").copyRecursively(File(projectDir, "src"))
+        File(templateProjectDir, "app").copyRecursively(File(projectDir, "app"))
     }
 
     @Test
     fun execute() {
-        val result = createGradleRunner("dokkaHtml", "-i", "-s").buildRelaxed()
-        assertEquals(TaskOutcome.SUCCESS, assertNotNull(result.task(":dokkaHtml")).outcome)
+        val result = createGradleRunner(":app:dokkaHtml", "-i", "-s").buildRelaxed()
+        assertEquals(TaskOutcome.SUCCESS, assertNotNull(result.task(":app:dokkaHtml")).outcome)
 
-        val htmlOutputDir = File(projectDir, "build/dokka/html")
+        val htmlOutputDir = File(projectDir, "app/build/dokka/html")
         assertTrue(htmlOutputDir.isDirectory, "Missing html output directory")
 
         assertTrue(
